@@ -1,13 +1,13 @@
 
 
 <?php
-// Retrieve session data 
+// Get session 
 $sessData = !empty($_SESSION['sessData']) ? $_SESSION['sessData'] : '';
-// Get member data 
+// Get member 
 $memberData = $userData = array();
 
 if (!empty($_GET['id'])) {
-    // Include and initialize JSON class 
+    
     include 'crud.class.php';
     $db = new Crud();
 

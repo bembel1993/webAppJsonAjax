@@ -1,8 +1,3 @@
-<?PHP //if(!defined('MyConst')) {
-
-//die('direct access denied');
-//}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,31 +11,41 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-   
+
 </head>
 
 <body>
 
     <div id="RegForm" class="wrapper">
+        <?PHP /*if (!defined('MyConst')) {
 
+            die('direct access denied');
+        }*/
+        ?>
         <h2>Create an account</h2>
         <form id="regform" action="" method="" enctype="multipart/form-data" autocomplete="off">
             <div id="my_messagereg"></div>
+            <div id="my_messagelog1"></div>
             <p class="error"><?php echo @$user->errorMessage ?></p>
             <p class="success"><?php echo @$user->successMessage ?></p>
 
+            <div id="my_messagelog1"></div>
             <input type="text" id="login" name="f[login]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example4cg">Login</label>
 
+            <div id="my_messagepass"></div>
             <input type="password" id="password" name="f[password]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example4cg">Password</label>
 
+            <div id="my_messageconpass"></div>
             <input type="password" id="confirm_password" name="f[confirm_password]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example4cdg">Confirm Password</label>
 
+            <div id="my_messagemail"></div>
             <input type="email" id="email" name="f[email]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example3cg">Email</label>
 
+            <div id="my_messagename"></div>
             <input type="text" id="name" name="f[name]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example1cg">Name</label>
 
@@ -54,10 +59,10 @@
                     </a>
                 </p>
             </center>
-            
+
         </form>
     </div>
-    
+
     <div class="loginFormShow">
     </div>
     <script type="text/javascript" src="script.js"></script>

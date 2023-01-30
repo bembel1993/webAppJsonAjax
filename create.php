@@ -1,7 +1,21 @@
 <?php
 // Start session 
 session_start();
+//
+if (!isset($_POST['f']['login'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['password'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['confirm_password'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['email'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['name'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['userSubmit'])) exit('No direct script access allowed');
 
+$login = trim(strip_tags($_POST['f']['login']));
+$password = trim(strip_tags($_POST['f']['password']));
+$confirmPassword = trim(strip_tags($_POST['f']['confirm_password']));
+$email = trim(strip_tags($_POST['f']['email']));
+$name = trim(strip_tags($_POST['f']['name']));
+
+$userSubmit = $_POST['f']['userSubmit'];
 // Include and initialize DB class 
 require_once 'crud.class.php';
 $db = new Crud();
@@ -9,14 +23,14 @@ $db = new Crud();
 // Set default redirect url 
 $redirectURL = 'account.php';
 
-if (isset($_POST['userSubmit'])) {
+if (isset($_POST['f']['userSubmit'])) {
     // Get form fields value 
-    $id = $_POST['id'];
-    $login = $_POST['login'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm_password'];
-    $name = $_POST['name'];
+    $id = $_POST['f']['id'];
+    $login = $_POST['f']['login'];
+    $email = $_POST['f']['email'];
+    $password = $_POST['f']['password'];
+    $confirmPassword = $_POST['f[confirm_password]'];
+    $name = $_POST['f']['name'];
 
     $id_str = '';
     if (!empty($id)) {

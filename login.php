@@ -20,7 +20,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <style>
         .hiddenreg2 {
-           
+
             display: none;
         }
     </style>
@@ -30,7 +30,7 @@
 
     <div id="LogForm" class="wrapper">
         <h2>Login</h2>
-
+        <?PHP define('MyConst', true); ?>
         <form id="sendform" action="" method="">
             <div id="my_messagelog"></div>
             <p class="error"><?php echo @$user->error ?></p>
@@ -40,8 +40,9 @@
                 <label class="form-label" for="form3Example3cg">Login</label>
             </div>
             <p class="error"><?php echo @$user->errorPassword ?></p>
-            <div id="my_messagepass"></div>
+            
             <div class="form-outline mb-4">
+                <div id="my_messagepass"></div>
                 <input id="password" type="password" name="f[password]" class="form-control form-control-lg" />
                 <label class="form-label" for="form3Example4cg">Password</label>
 
@@ -64,8 +65,8 @@
     <div id="registerFormShow">
     </div>
     </section>
-    
-    <div id="body2" >
+
+    <div id="body2">
     </div>
     <script type="text/javascript" src="script.js"></script>
 </body>

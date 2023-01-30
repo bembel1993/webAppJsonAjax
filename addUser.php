@@ -66,28 +66,28 @@ include('includeForAddUser.php');
 
                                 <div class="form-group">
                                     <label>Login</label>
-                                    <input type="text" class="form-control" name="login" value="<?php echo !empty($userData['login']) ? $userData['login'] : ''; ?>" required="">
+                                    <input type="text" class="form-control" name="f[login]" value="<?php echo !empty($userData['login']) ? $userData['login'] : ''; ?>" required="">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="email" value="<?php echo !empty($userData['email']) ? $userData['email'] : ''; ?>" required="">
+                                    <input type="email" class="form-control" name="f[email]" value="<?php echo !empty($userData['email']) ? $userData['email'] : ''; ?>" required="">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" name="password" value="<?php echo !empty($userData['password']) ? $userData['password'] : ''; ?>" required="">
+                                    <input type="password" class="form-control" name="f[password]" value="<?php echo !empty($userData['password']) ? $userData['password'] : ''; ?>" required="">
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password" value="<?php echo !empty($userData['confirm_password']) ? $userData['confirm_password'] : ''; ?>" required="">
+                                    <input type="password" class="form-control" name="f[confirm_password]" value="<?php echo !empty($userData['confirm_password']) ? $userData['confirm_password'] : ''; ?>" required="">
                                 </div>
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" name="name" value="<?php echo !empty($userData['name']) ? $userData['name'] : ''; ?>" required="">
+                                    <input type="text" class="form-control" name="f[name]" value="<?php echo !empty($userData['name']) ? $userData['name'] : ''; ?>" required="">
                                 </div>
 
                                 <button id="backbtn" class="btn btn-secondary">Back</button>
-                                <input type="hidden" name="id" value="<?php echo !empty($memberData['id']) ? $memberData['id'] : ''; ?>">
-                                <input id="addupdate" type="submit" name="userSubmit" class="btn btn-primary" value="Submit">
+                                <input type="hidden" name="f[id]" value="<?php echo !empty($memberData['id']) ? $memberData['id'] : ''; ?>">
+                                <input id="addupdate" type="submit" name="f[userSubmit]" class="btn btn-primary" value="Submit">
                                 
                             </form>
                         </div>
