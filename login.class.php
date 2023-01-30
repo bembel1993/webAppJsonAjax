@@ -52,10 +52,11 @@ class Login
 	private function validationFieldLogin()
 	{
 		if (empty($this->login)) {
-			echo 'Field Login is empty';
-			return $this->errorLogin = "Field Login is empty";
+			echo '<p style="color: red">Field Login is empty</p>';
+		return false;
+			//	return $this->errorLogin = "Field Login is empty";
 		} elseif (empty($this->password)) {
-			echo 'Field Password is empty';
+			echo '<p style="color: red">Field Password is empty</p>';
 			return $this->errorPassword = "Field Password is empty";
 		} else {
 			$this->login();
@@ -72,6 +73,7 @@ class Login
 					$_SESSION['user'] = $this->login;
 					header("location: account.php");
 					exit();
+				//	return true;
 				}
 			} elseif (empty($_POST['login'])) {
 				//$this->err['login'] = 'Name is required.';

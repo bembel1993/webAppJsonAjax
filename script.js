@@ -1,12 +1,28 @@
 //////////--SEND DATA LOGIN FORM--////////////
-$('#sendform').submit(function () {
+$('#submit').click(function () {
 	$.post(
-		'login.class.php', // адрес обработчика
+		'login.class.php', 
 		$("#sendform").serialize(),
 
-		function (msg) { // получен ответ сервера — это json! 
-			console.log(msg); // в консоль для контроля
-			$('#my_messagelog').html(msg);
+		function (msg) {
+			if (msg == '<p style="color: red">Wrong username or password</p>'
+				|| msg == '<p style="color: red">Field Login is empty</p>'
+				|| msg == '<p style="color: red">Field Password is empty</p>') {
+				console.log(msg);
+				$('#my_messagelog').html(msg);
+			}
+			else {
+				$.get(
+					'account.php',
+					function(msg){
+						console.log(msg);
+						$('#LogForm').hide('slow');
+						$('#body2').html(msg);
+					}
+				);
+				return false;
+				//window.location.href = 'account.php';
+			}
 		}
 	);
 	return false;
@@ -26,24 +42,17 @@ $('#regform').submit(function () {
 	return false;
 });
 
-//////////--SHOW ADD FORM IN ACCOUNT--/////////////
-$(document).ready(function () {
-	$('#addformbtn').click(function () {
-		$.get(
-			'addUser.php',
-			//$("#showAddForm").serialize(),
-			function (msg) {
-				console.log(msg);
-				$('#showAddForm').html(msg);
-			}
-		);
-		return false;
-	});
-});
 ////////////////--HIDE AND SHOW TABLE IN ACCOUNT--/////////////
 $(document).ready(function () {
 	$("#hideAndShow").click(function () {
 		$("#tbl").toggle();
+	});
+});
+
+////////////////--HIDE AND SHOW ADDFORM IN ACCOUNT--/////////////
+$(document).ready(function () {
+	$("#addformbtn").click(function () {
+		$("#showAddForm").toggle();
 	});
 });
 ////////////////--BACK BTN TO ACCOUNT--/////////////
@@ -54,8 +63,8 @@ $("#backbtn").click(function () {
 		function (msg) {
 			console.log(msg);
 			$('#showAddForm').hide('slow');
-			//$('#registerFormShow').html(msg);
 		}
+
 	);
 	return false;
 });
@@ -73,48 +82,53 @@ $("#backbtn").click(function () {
 	);
 	return false;
 });*/
-/*
-$(document).ready(function () {
+
+/*$(document).ready(function () {
 	$("#loginbtn").click(function () {
 		$('#RegForm').hide('slow');
-		$("#LogForm").show('slow');
+		$('#LogForm').show('slow');
 	
 	});
-});
+});*/
 
+//$(document).ready(function () {
+/*$("#registrbtn").click(function () {
+	$('#LogForm').hide('slow');
+	$("#registerFormShow").show('slow');
+	
+});*/
+$("#loginbtn").click(function () {
+	$('#RegForm').hide('slow');
+	$('#LogForm').show('slow');
+
+});
+//});
+
+//////////--TRANSFER FROM LOG FORM IN REG FORM--////////////
 $(document).ready(function () {
-	$("#registrbtn").click(function () {
-		$('#LogForm').hide('slow');
-		$("#RegForm").show('slow');
-		
+	$('#registrbtn').click(function () {
+		$.get(
+			$('#registerFormShow').load('registration.php', function () {
+				$('#LogForm').hide('slow');
+			}),
+		);
+		return false;
+	});
+	$('#loginbtn').click(function () {
+		$.get(
+			function (msg) {
+				$('#registerFormShow').load('registration.php', function () {
+					//	$('#registerFormShow').hide('slow');
+				}).hide('slow'),
+					$('#LogForm').html(msg);
+			}
+		);
+		return false;
 	});
 });
-*/
-//////////--TRANSFER FROM LOG FORM IN REG FORM--////////////
-$('#registrbtn').click(function () {
-	$.get(
-		'registration.php',
 
-		function (msg) {
-			console.log(msg);
-			$('#wrapLogForm').hide('slow');
-			$('#registerFormShow').html(msg);
-		}
-	);
-	return false;
-});
-
-$('#loginbtn').click(function () {
-	$.get(
-		'login.php',
-		function (msg) {
-			console.log(msg);
-			$('#registerFormShow').hide('slow');
-			$('#wrapLogForm').html(msg);
-		}
-	);
-	return false;
-});
+//$('#registrbtn').load('registration.php', function () {
+//});
 
 
 

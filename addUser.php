@@ -1,4 +1,19 @@
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("location: login.php");
+    exit();
+}
+
+if (isset($_GET['logout'])) {
+    unset($_SESSION['user']);
+    header("location: login.php");
+    exit();
+}
+//////////////--CRUD CLASS TO SHOW DATA--///////////////////
+?>
+
+<?php
 include('includeForAddUser.php');
 ?>
 <!-- DISPLAY ERROR STATUS -->
@@ -24,7 +39,7 @@ include('includeForAddUser.php');
 
 <body>
     <div>
-      <!--  <header>
+        <header>
             <div>
                 <p>
                     <button type="button" class="btn btn-info btn-lg" style="float: right">
@@ -35,7 +50,7 @@ include('includeForAddUser.php');
                 </p>
             </div>
             <h2>Hello <?php echo $_SESSION['user']; ?><h2>
-        </header>-->
+        </header>
         <div id="addUserWrapp" class="mask d-flex align-items-center h-100 gradient-custom-3">
             <div class="container h-100">
                 <div class="d-flex justify-content-center align-items-center h-100">
@@ -47,7 +62,7 @@ include('includeForAddUser.php');
                             </h2>
                         </div>
                         <div class="col-md-6">
-                            <form id="adduserform" method="" action="">
+                            <form id="adduserform" method="POST" action="create.php">
 
                                 <div class="form-group">
                                     <label>Login</label>

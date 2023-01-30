@@ -1,3 +1,8 @@
+<?PHP //if(!defined('MyConst')) {
+
+//die('direct access denied');
+//}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="script.js"></script>
+   
 </head>
 
 <body>

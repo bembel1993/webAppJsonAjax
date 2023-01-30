@@ -1,6 +1,15 @@
 <?php
 include('includeForAccount.php');
 ?>
+<?php
+include('includeForAddUser.php');
+?>
+<!-- DISPLAY ERROR STATUS -->
+<?php if (!empty($statusMsg) && ($statusMsgType == 'error')) { ?>
+    <div class="col-xs-12">
+        <div class="alert alert-danger"><?php echo $statusMsg; ?></div>
+    </div>
+<?php } ?>
 <!-- DISPLAY STATUS MSG -->
 <?php if (!empty($statusMsg) && ($statusMsgType == 'success')) { ?>
     <div class="col-xs-12">
@@ -22,7 +31,11 @@ include('includeForAccount.php');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
+    <style>
+        .hiddenreg {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,10 +51,55 @@ include('includeForAccount.php');
         </div>
         <h2>Hello <?php echo $_SESSION['user']; ?><h2>
     </header>
-    <div class="pri">
-    </div>
+
     <br>
-    <div id="showAddForm"></div>
+    <div class="hiddenreg" id="showAddForm">
+    <div id="addUserWrapp" class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-4 text-bg-dark p-3">
+
+                        <div class="col-md-12">
+                            <h2>
+                                <?php echo $actionLabel; ?> Member
+                            </h2>
+                        </div>
+                        <div class="col-md-6">
+                            <form id="" method="post" action="create.php">
+
+                                <div class="form-group">
+                                    <label>Login</label>
+                                    <input type="text" class="form-control" name="login" value="<?php echo !empty($userData['login']) ? $userData['login'] : ''; ?>" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email" value="<?php echo !empty($userData['email']) ? $userData['email'] : ''; ?>" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" value="<?php echo !empty($userData['password']) ? $userData['password'] : ''; ?>" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirm_password" value="<?php echo !empty($userData['confirm_password']) ? $userData['confirm_password'] : ''; ?>" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" name="name" value="<?php echo !empty($userData['name']) ? $userData['name'] : ''; ?>" required="">
+                                </div>
+
+                                <button id="backbtn" class="btn btn-secondary">Back</button>
+                                <input type="hidden" name="id" value="<?php echo !empty($memberData['id']) ? $memberData['id'] : ''; ?>">
+                                <input id="addupdate" type="submit" name="userSubmit" class="btn btn-primary" value="Submit">
+                                
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
         <button id="addformbtn" name="form" class="btn btn-danger">
             <span class="glyphicon glyphicon-plus" aria-hidden="true">
@@ -86,7 +144,7 @@ include('includeForAccount.php');
                             &nbsp;&nbsp;
 
                             <a href="delete.php?action_type=delete&id=
-                                <?php echo $row['id']; ?>" class="glyphicon glyphicon-remove">
+                                <?php echo $row['id']; ?>" class="glyphicon glyphicon-remove" id = "delet">
                             </a>
                             <!--     &nbsp;&nbsp;
                             <a href="add.html" class="glyphicon glyphicon-plus">

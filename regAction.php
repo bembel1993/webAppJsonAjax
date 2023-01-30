@@ -1,6 +1,6 @@
-<?php require("registration.class.php") ?>
+<?php //require("registration.class.php") ?>
 <?php
-if (isset($_POST['submit'])) {
+/*if (isset($_POST['submit'])) {
     $user = new RegUser(
         $_POST['login'],
         $_POST['password'],
@@ -8,5 +8,5 @@ if (isset($_POST['submit'])) {
         $_POST['email'],
         $_POST['name']
     );
-}
+}*/
 ?>
