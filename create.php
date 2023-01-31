@@ -1,7 +1,9 @@
 <?php
 // Start session 
 session_start();
-//
+//if (!$_POST) exit('No direct script access allowed');
+/*
+if (!isset($_POST['f']['id'])) exit('No direct script access allowed');
 if (!isset($_POST['f']['login'])) exit('No direct script access allowed');
 if (!isset($_POST['f']['password'])) exit('No direct script access allowed');
 if (!isset($_POST['f']['confirm_password'])) exit('No direct script access allowed');
@@ -9,13 +11,23 @@ if (!isset($_POST['f']['email'])) exit('No direct script access allowed');
 if (!isset($_POST['f']['name'])) exit('No direct script access allowed');
 if (!isset($_POST['f']['userSubmit'])) exit('No direct script access allowed');
 
+
+if (!isset($_POST['id'])) exit('No direct script access allowed');
+if (!isset($_POST['login'])) exit('No direct script access allowed');
+if (!isset($_POST['password'])) exit('No direct script access allowed');
+if (!isset($_POST['confirm_password'])) exit('No direct script access allowed');
+if (!isset($_POST['email'])) exit('No direct script access allowed');
+if (!isset($_POST['name'])) exit('No direct script access allowed');
+if (!isset($_POST['userSubmit'])) exit('No direct script access allowed');
+/*
+$id = trim(strip_tags($_POST['f']['id']));
 $login = trim(strip_tags($_POST['f']['login']));
 $password = trim(strip_tags($_POST['f']['password']));
 $confirmPassword = trim(strip_tags($_POST['f']['confirm_password']));
 $email = trim(strip_tags($_POST['f']['email']));
 $name = trim(strip_tags($_POST['f']['name']));
-
-$userSubmit = $_POST['f']['userSubmit'];
+*/
+//$userSubmit = $_POST['f']['userSubmit'];
 // Include and initialize DB class 
 require_once 'crud.class.php';
 $db = new Crud();
@@ -23,14 +35,14 @@ $db = new Crud();
 // Set default redirect url 
 $redirectURL = 'account.php';
 
-if (isset($_POST['f']['userSubmit'])) {
+if (isset($_POST['userSubmit'])) {
     // Get form fields value 
-    $id = $_POST['f']['id'];
-    $login = $_POST['f']['login'];
-    $email = $_POST['f']['email'];
-    $password = $_POST['f']['password'];
-    $confirmPassword = $_POST['f[confirm_password]'];
-    $name = $_POST['f']['name'];
+    $id = $_POST['id'];
+    $login = $_POST['login'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm_password'];
+    $name = $_POST['name'];
 
     $id_str = '';
     if (!empty($id)) {
@@ -119,17 +131,13 @@ if (isset($_POST['f']['userSubmit'])) {
             } else {
                 $sessData['status']['type'] = 'error';
                 $sessData['status']['msg'] = 'Please try again.';
-
-                // Set redirect url 
                 $redirectURL = 'addUser.php' . $id_str;
             }
         }
     } else {
         $sessData['status']['type'] = 'error';
         $sessData['status']['msg'] = '<p>Please fill all the mandatory fields.</p>' . $errorMsg;
-
-        // Set redirect url 
-        $redirectURL = 'addUser.php' . $id_str;
+        $redirectURL = 'account.php' . $id_str;
     }
 
     // Store status into the session 
@@ -150,6 +158,5 @@ if (isset($_POST['f']['userSubmit'])) {
     $_SESSION['sessData'] = $sessData;
 }
 
-// Redirect to the respective page 
 header("Location:" . $redirectURL);
 exit();

@@ -1,15 +1,6 @@
 <?php
 include('includeForAccount.php');
 ?>
-<?php
-include('includeForAddUser.php');
-?>
-<!-- DISPLAY ERROR STATUS -->
-<?php if (!empty($statusMsg) && ($statusMsgType == 'error')) { ?>
-    <div class="col-xs-12">
-        <div class="alert alert-danger"><?php echo $statusMsg; ?></div>
-    </div>
-<?php } ?>
 <!-- DISPLAY STATUS MSG -->
 <?php if (!empty($statusMsg) && ($statusMsgType == 'success')) { ?>
     <div class="col-xs-12">
@@ -31,11 +22,7 @@ include('includeForAddUser.php');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <style>
-        .hiddenreg {
-            display: none;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -51,76 +38,29 @@ include('includeForAddUser.php');
         </div>
         <h2>Hello <?php echo $_SESSION['user']; ?><h2>
     </header>
-    <div id="showreuslt"></div>
-    <br>
-    <div class="hiddenreg" id="showAddForm">
-        <div id="addUserWrapp" class="mask d-flex align-items-center h-100 gradient-custom-3">
-            <div class="container h-100">
-                <div class="d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-6 col-lg-6 col-xl-4 text-bg-dark p-3">
-
-                        <div class="col-md-12">
-                            <h2>
-                                <?php echo $actionLabel; ?> Member
-                            </h2>
-                        </div>
-                        <div class="col-md-6">
-                            <form id="addupdateForm" method="" action="">
-
-                                <div class="form-group">
-                                    <label>Login</label>
-                                    <input type="text" class="form-control" name="f[login]" value="<?php echo !empty($userData['login']) ? $userData['login'] : ''; ?>" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" name="f[email]" value="<?php echo !empty($userData['email']) ? $userData['email'] : ''; ?>" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" name="f[password]" value="<?php echo !empty($userData['password']) ? $userData['password'] : ''; ?>" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Confirm Password</label>
-                                    <input type="password" class="form-control" name="f[confirm_password]" value="<?php echo !empty($userData['confirm_password']) ? $userData['confirm_password'] : ''; ?>" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" name="f[name]" value="<?php echo !empty($userData['name']) ? $userData['name'] : ''; ?>" required="">
-                                </div>
-
-                                <button id="backbtn" class="btn btn-secondary">Back</button>
-                                <input type="hidden" name="f[id]" value="<?php echo !empty($memberData['id']) ? $memberData['id'] : ''; ?>">
-                                <input id="addupdate" type="submit" name="f[userSubmit]" class="btn btn-primary" value="Submit">
-
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="pri">
     </div>
-
-    <button id="addformbtn" name="form" class="btn btn-danger">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        Create Data
-    </button>
-
+    <div id="showresult"><div>
+    <div id="showaddup">
+    </div>
+    <br><br>
+   <!-- <a href="addUser.php">-->
+        <button id="addupbtn" type="button" name="addupbtn" class="btn btn-danger">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">
+            </span>
+            Create Data
+        </button>
+    <!--</a>-->
     &nbsp;&nbsp;&nbsp;&nbsp;
 
     <span id="hideAndShow" class="glyphicon glyphicon-th-list" aria-hidden="true">
     </span>
     Show Table
     &nbsp;&nbsp;&nbsp;&nbsp;
-
     <a href="account.php"><span id="zoom" class="glyphicon glyphicon-zoom-in" aria-hidden="true">
         </span>
         Zoom in
     </a>
-    <script>
-
-    </script>
     <table id="tbl" class="table table-dark table-striped">
         <thead class="thead-dark">
             <tr>
@@ -149,7 +89,7 @@ include('includeForAddUser.php');
                             &nbsp;&nbsp;
 
                             <a href="delete.php?action_type=delete&id=
-                                <?php echo $row['id']; ?>" class="glyphicon glyphicon-remove" id="delet">
+                                <?php echo $row['id']; ?>" class="glyphicon glyphicon-remove">
                             </a>
                             <!--     &nbsp;&nbsp;
                             <a href="add.html" class="glyphicon glyphicon-plus">

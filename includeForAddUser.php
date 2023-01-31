@@ -1,13 +1,26 @@
+<?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("location: login.php");
+    exit();
+}
 
+if (isset($_GET['logout'])) {
+    unset($_SESSION['user']);
+    header("location: login.php");
+    exit();
+}
+//////////////--CRUD CLASS TO SHOW DATA--///////////////////
+?>
 
 <?php
-// Get session 
+// Retrieve session data 
 $sessData = !empty($_SESSION['sessData']) ? $_SESSION['sessData'] : '';
-// Get member 
+// Get member data 
 $memberData = $userData = array();
 
 if (!empty($_GET['id'])) {
-    
+    // Include and initialize JSON class 
     include 'crud.class.php';
     $db = new Crud();
 

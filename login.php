@@ -30,7 +30,7 @@
 
     <div id="LogForm" class="wrapper">
         <h2>Login</h2>
-        <?PHP define('MyConst', true); ?>
+        
         <form id="sendform" action="" method="">
             <div id="my_messagelog"></div>
             <p class="error"><?php echo @$user->error ?></p>

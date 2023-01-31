@@ -28,14 +28,13 @@ $('#submit').click(function () {
 	return false;
 });
 //ADD and UPDATE DATA
-$('#addupdate').click(function () {
+$('#addbtn').click(function () {
 	$.post(
 		'create.php',
-		$("#showAddForm").serialize(),
+		$("#addupdateForm").serialize(),
 		function (msg) {
-			console.log(msg);
-			$('#showAddForm').hide('slow');
-			$('#showreuslt').html(msg);
+			console.log(msg);;
+			$('#showresult').html(msg);
 		}
 	);
 	return false;
@@ -119,26 +118,40 @@ $(document).ready(function () {
 		$("#tbl").toggle();
 	});
 });
-
-//HIDE AND SHOW ADDFORM IN ACCOUNT
+//SHOW ADDUPDATE FORM
 $(document).ready(function () {
+	$("#addupbtn").click(function () {
+		$.get(
+			'addUser.php',
+			function (msg) {
+				console.log(msg);
+				$('#showaddup').html(msg);
+			}
+		);
+		return false;
+	});
+});
+//
+//HIDE AND SHOW ADDFORM IN ACCOUNT
+/*$(document).ready(function () {
 	$("#addformbtn").click(function () {
 		$("#showAddForm").toggle();
 	});
-});
+});*/
 //BACK BTN TO ACCOUNT
-$("#backbtn").click(function () {
-	$.get(
-		'account.php',
-
-		function (msg) {
-			console.log(msg);
-			$('#showAddForm').hide('slow');
-		}
-
-	);
-	return false;
+$(document).ready(function () {
+	$("#backbtn").click(function () {
+		$.get(
+			'account.php',
+			function (msg) {
+				console.log(msg);
+				$('#showaddup').hide('slow');
+			}
+		);
+		return false;
+	});
 });
+
 
 //TRANSFER FROM LOG FORM IN REG FORM
 $(document).ready(function () {
@@ -168,6 +181,7 @@ $("#loginbtn").click(function () {
 	$('#LogForm').show('slow');
 
 });
+
 //////////--TRANSFER FROM REG FORM IN LOGIN FORM--////////////
 /*$('#loginbtn').click(function() {
 	$.post(
