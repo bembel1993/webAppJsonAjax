@@ -1,6 +1,21 @@
 <?php
 // Start session 
 session_start();
+
+if (!isset($_POST['f']['login'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['password'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['confirm_password'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['email'])) exit('No direct script access allowed');
+if (!isset($_POST['f']['name'])) exit('No direct script access allowed');
+
+$login = trim(strip_tags($_POST['f']['login']));
+$password = trim(strip_tags($_POST['f']['password']));
+$confirmPassword = trim(strip_tags($_POST['f']['confirm_password']));
+$email = trim(strip_tags($_POST['f']['email']));
+$name = trim(strip_tags($_POST['f']['name']));
+
+$user = new CrudClass($login, $password, $confirmPassword, $email, $name);
+
 //if (!$_POST) exit('No direct script access allowed');
 /*
 if (!isset($_POST['f']['id'])) exit('No direct script access allowed');
@@ -29,7 +44,7 @@ $name = trim(strip_tags($_POST['f']['name']));
 */
 //$userSubmit = $_POST['f']['userSubmit'];
 // Include and initialize DB class 
-require_once 'crud.class.php';
+/*require_once 'crud.class.php';
 $db = new Crud();
 
 // Set default redirect url 
@@ -160,3 +175,4 @@ if (isset($_POST['userSubmit'])) {
 
 header("Location:" . $redirectURL);
 exit();
+*/

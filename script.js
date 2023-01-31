@@ -27,14 +27,78 @@ $('#submit').click(function () {
 	);
 	return false;
 });
-//ADD and UPDATE DATA
+//UPDATE DATA
+
+
+//ADD DATA
 $('#addbtn').click(function () {
 	$.post(
-		'create.php',
+		'crud.php',
 		$("#addupdateForm").serialize(),
 		function (msg) {
-			console.log(msg);;
-			$('#showresult').html(msg);
+			if (msg == '<p style="color: red">Field Login is empty</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Field Password is empty</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Field Confirm Password is empty</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Field Email is empty</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Field Name is empty</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Confirmed password is not equal to your password</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Password should be at least 6 characters long</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Password should be have numbers</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Password should be have letters</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Login should be at least 6 characters long</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Name should be at least 2 characters long and only contain letters</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Name should be only containt letters</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Email is already taken</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Login is already taken</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			else {
+				console.log(msg);;
+				$('#showresult').html(msg);
+				//$('#showresult').hide('slow');
+				//$("#refrash").load("account.php #refrash > *");
+				$('#tbl').load('account.php', function () {})
+			}
 		}
 	);
 	return false;

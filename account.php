@@ -40,7 +40,7 @@ include('includeForAccount.php');
     </header>
     <div class="pri">
     </div>
-    <div id="showresult"><div>
+    
     <div id="showaddup">
     </div>
     <br><br>

@@ -5,7 +5,7 @@
     $user = new Login($_POST['login'], $_POST['password']);
 }
 */
-
+//define('APP', true);
 ?>
 
 <html>
