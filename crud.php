@@ -52,48 +52,50 @@ class CrudClass
             "id" => $this->id,
             "login" => $this->login,
             "password" => $this->encryptedPassword,
-         //   "confirm_password" => $this->confirmPassword,
+            //   "confirm_password" => $this->confirmPassword,
             "email" => $this->email,
             "name" => $this->name,
         ];
 
-        if($this->validationField() == false){};
+        if ($this->validationField() == false) {
+        };
     }
     ///////////////////////////////////////////////
-    private function update($upData, $id){ 
-        if(!empty($upData) && is_array($upData) && !empty($this->id)){
-         //   $this->saveUserArray = json_decode(file_get_contents($this->containerDataRegUser), true); 
-            
-            $jsonData = file_get_contents($this->containerDataRegUser); 
-            $data = json_decode($jsonData, true); 
+    private function update($upData, $id)
+    {
+        if (!empty($upData) && is_array($upData) && !empty($this->id)) {
+            //   $this->saveUserArray = json_decode(file_get_contents($this->containerDataRegUser), true); 
+
+            $jsonData = file_get_contents($this->containerDataRegUser);
+            $data = json_decode($jsonData, true);
 
 
-            foreach ($data as $key => $value) { 
-                if ($value['id'] == $id) { 
-                    if(isset($upData['login'])){ 
-                        $data[$key]['login'] = $upData['login']; 
-                    } 
-                    if(isset($upData['email'])){ 
-                        $data[$key]['email'] = $upData['email']; 
-                    } 
-                    if(isset($upData['password'])){ 
-                        $data[$key]['password'] = $upData['password']; 
-                    } 
-                    if(isset($upData['confirm_password'])){ 
-                        $data[$key]['confirm_password'] = $upData['confirm_password']; 
+            foreach ($data as $key => $value) {
+                if ($value['id'] == $id) {
+                    if (isset($upData['login'])) {
+                        $data[$key]['login'] = $upData['login'];
                     }
-                    if(isset($upData['name'])){ 
-                        $data[$key]['name'] = $upData['name']; 
-                    }  
-                } 
-            } 
-            $update = file_put_contents($this->containerDataRegUser, json_encode($data)); 
+                    if (isset($upData['email'])) {
+                        $data[$key]['email'] = $upData['email'];
+                    }
+                    if (isset($upData['password'])) {
+                        $data[$key]['password'] = $upData['password'];
+                    }
+                    if (isset($upData['confirm_password'])) {
+                        $data[$key]['confirm_password'] = $upData['confirm_password'];
+                    }
+                    if (isset($upData['name'])) {
+                        $data[$key]['name'] = $upData['name'];
+                    }
+                }
+            }
+            $update = file_put_contents($this->containerDataRegUser, json_encode($data));
             echo '<p style="color: green">User is add</p>';
-            return $update?true:false; 
-        }else{ 
-            return false; 
-        } 
-    } 
+            return $update ? true : false;
+        } else {
+            return false;
+        }
+    }
     ///////////////////////////////////////////////
     private function insert()
     {
@@ -125,7 +127,7 @@ class CrudClass
 
     private function validationField()
     {
-        if(empty($this->login)){
+        if (empty($this->login)) {
             echo '<p style="color: red">Field Login is empty</p>';
             return $this->error = "Field Login is empty";
         } elseif (empty($this->password)) {
@@ -134,7 +136,7 @@ class CrudClass
         } elseif (empty($this->confirmPassword)) {
             echo '<p style="color: red">Field Confirm Password is empty</p>';
             return $this->errorMessage = "Field Confirm Password is empty";
-        } elseif (empty($this->email)) { 
+        } elseif (empty($this->email)) {
             echo '<p style="color: red">Field Email is empty</p>';
             return $this->errorMessage = "Field Email is empty";
         } elseif (empty($this->name)) {
@@ -146,13 +148,13 @@ class CrudClass
         } elseif (strlen($this->password) < 6) {
             echo '<p style="color: red">Password should be at least 6 characters long</p>';
             return $this->errorMessage = "Password should be at least 6 characters long";
-        } elseif(!preg_match("#[0-9]+#",$this->password)){
+        } elseif (!preg_match("#[0-9]+#", $this->password)) {
             echo '<p style="color: red">Password should be have numbers</p>';
             return $this->errorMessage = "Password should be have numbers";
-        } elseif(!preg_match("#[a-z]+#",$this->password)){
+        } elseif (!preg_match("#[a-z]+#", $this->password)) {
             echo '<p style="color: red">Password should be have letters</p>';
             return $this->errorMessage = "Password should be have letters";
-        }elseif (strlen($this->login) < 6) {
+        } elseif (strlen($this->login) < 6) {
             echo '<p style="color: red">Login should be at least 6 characters long</p>';
             return $this->errorMessage = "Login should be at least 6 characters long";;
         } elseif (strlen($this->name) < 2) {
@@ -163,6 +165,10 @@ class CrudClass
             return $this->errorMessage = "Name should be only containt letters";;
         } elseif (!empty($_POST['f']['id'])) {
             $this->update($this->newUserArray, $this->id);
+        } elseif (preg_match('/\s/', $this->login)) {
+            echo '<p style="color: red">Login must not contain spaces</p>';
+        } elseif (preg_match('/\s/', $this->password)) {
+            echo '<p style="color: red">Password must not contain spaces</p>';
         } else {
             $this->insert($this->newUserArray);
         }

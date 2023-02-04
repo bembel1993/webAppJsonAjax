@@ -90,7 +90,11 @@ if (isset($_POST['userSubmit'])) {
         $errorMsg = '<p>Name should be at least 2 characters long and only contain letters</p>';
     } elseif (!ctype_alpha($_POST['name'])) {
         $errorMsg = '<p>Name should be only containt letters';
-    } 
+    } elseif (preg_match('/\s/', $_POST['login'])) {
+            echo '<p style="color: red">Login must not contain spaces</p>';
+    } elseif (preg_match('/\s/', $_POST['password'])) {
+            echo '<p style="color: red">Password must not contain spaces</p>';
+    }
 
     $login = $_POST['login'];
     $password = $_POST['password'];
