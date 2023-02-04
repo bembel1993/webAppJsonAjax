@@ -52,7 +52,7 @@ class CrudClass
             "id" => $this->id,
             "login" => $this->login,
             "password" => $this->encryptedPassword,
-            "confirm_password" => $this->confirmPassword,
+         //   "confirm_password" => $this->confirmPassword,
             "email" => $this->email,
             "name" => $this->name,
         ];

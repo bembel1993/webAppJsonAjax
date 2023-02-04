@@ -5,11 +5,26 @@ $('#submit').click(function () {
 		$("#sendform").serialize(),
 
 		function (msg) {
+			window.location.replace('account.php');
+		}
+	);
+	return false;
+});
+/*$('#submit').click(function () {
+	$.post(
+		'login.class.php',
+		$("#sendform").serialize(),
+
+		function (msg) {
 			if (msg == '<p style="color: red">Wrong username or password</p>'
 				|| msg == '<p style="color: red">Field Login is empty</p>'
 				|| msg == '<p style="color: red">Field Password is empty</p>') {
 				console.log(msg);
 				$('#my_messagelog').html(msg);
+				//$('#LogForm').hide('slow');
+				//window.location.replace('account.php'); 
+				//window.location.href = 'account.php';
+
 			}
 			else {
 				$.get(
@@ -26,7 +41,7 @@ $('#submit').click(function () {
 		}
 	);
 	return false;
-});
+});*/
 //UPDATE DATA
 
 
@@ -97,7 +112,7 @@ $('#addbtn').click(function () {
 				$('#showresult').html(msg);
 				//$('#showresult').hide('slow');
 				//$("#refrash").load("account.php #refrash > *");
-				$('#tbl').load('account.php', function () {})
+				$('#tbl').load('account.php', function () { })
 			}
 		}
 	);
@@ -216,7 +231,6 @@ $(document).ready(function () {
 	});
 });
 
-
 //TRANSFER FROM LOG FORM IN REG FORM
 $(document).ready(function () {
 	$('#registrbtn').click(function () {
@@ -244,6 +258,30 @@ $("#loginbtn").click(function () {
 	$('#RegForm').hide('slow');
 	$('#LogForm').show('slow');
 
+});
+
+//LOGOUT BUTTON
+$('#logoutbtn').click(function () {
+	$.post(
+		'logout.php',
+		//$("#sendform").serialize(),
+		function (msg) {
+			window.location.replace('index.php');
+		}
+	);
+	return false;
+});
+
+//BACK BTN TO LOGIN FORM
+$('#indexbtn').click(function () {
+	$.get(
+		'logout.php',
+		//$("#sendform").serialize(),
+		function (msg) {
+			window.location.replace('index.php');
+		}
+	);
+	return false;
 });
 
 //////////--TRANSFER FROM REG FORM IN LOGIN FORM--////////////

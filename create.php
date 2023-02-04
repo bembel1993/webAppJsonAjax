@@ -107,7 +107,7 @@ if (isset($_POST['userSubmit'])) {
         "id" => $id,
         "login" => $login,
         "password" => $encryptedPassword,
-        "confirm_password" => $confirmPassword,
+       // "confirm_password" => $confirmPassword,
         "email" => $email,
         "name" => $name,
     );

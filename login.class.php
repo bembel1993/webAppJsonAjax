@@ -44,7 +44,7 @@ class Login
 		$this->password = $password;
 		$this->saveUserArray = json_decode(file_get_contents($this->containerDataRegUser), true);
 
-		if($this->validationFieldLogin() == false){
+		if ($this->validationFieldLogin() == false) {
 			//$this->error = "Field Login is empty";
 		};
 	}
@@ -53,11 +53,17 @@ class Login
 	{
 		if (empty($this->login)) {
 			echo '<p style="color: red">Field Login is empty</p>';
-		return false;
-			//	return $this->errorLogin = "Field Login is empty";
+		//	setcookie("user", "empty");
+			//echo ;
+		//	header("location: account.php");
+		//	exit();
+			//return false;
+			//return $this->errorLogin = "Field Login is empty";
 		} elseif (empty($this->password)) {
 			echo '<p style="color: red">Field Password is empty</p>';
-			return $this->errorPassword = "Field Password is empty";
+	//		header("location: account.php");
+	//		exit();
+			//return $this->errorPassword = "Field Password is empty";
 		} else {
 			$this->login();
 		}
@@ -71,15 +77,20 @@ class Login
 					session_start();
 					echo "Successfully loged";
 					$_SESSION['user'] = $this->login;
+				//	$_SESSION['login'] = $this->login;
+//					$_SESSION['password'] = $this->password;
 					header("location: account.php");
 					exit();
-				//	return true;
+					//	return true;
 				}
 			} elseif (empty($_POST['login'])) {
 				//$this->err['login'] = 'Name is required.';
 			}
 		}
 		echo '<p style="color: red">Wrong username or password</p>';
-		return $this->error = "Wrong username or password";
+		//header("location: account.php");
+		//exit();
+		//return $this->error = "Wrong username or password";
+
 	}
 }
