@@ -43,10 +43,20 @@ $('#submit').click(function () {
 	return false;
 });*/
 //UPDATE DATA
-
-
-//ADD DATA
+//ADD and UPDATE NEW METHOD
 $('#addbtn').click(function () {
+	$.post(
+		'create.php',
+		$("#addupdateForm").serialize(),
+		function (msg) {
+			console.log(msg);;
+			$('#showresult').html(msg);
+		}
+	);
+	return false;
+});
+//ADD DATA
+/*$('#addbtn').click(function () {
 	$.post(
 		'crud.php',
 		$("#addupdateForm").serialize(),
@@ -107,6 +117,18 @@ $('#addbtn').click(function () {
 				console.log(msg);
 				$('#showresult').html(msg);
 			}
+			if (msg == '<p style="color: red">Password must not contain spaces</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Password cannot contain special characters</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
+			if (msg == '<p style="color: red">Not correct valid Email format</p>') {
+				console.log(msg);
+				$('#showresult').html(msg);
+			}
 			else {
 				console.log(msg);;
 				$('#showresult').html(msg);
@@ -117,7 +139,7 @@ $('#addbtn').click(function () {
 		}
 	);
 	return false;
-});
+});*/
 
 //SEND DATA REGISTRATION FORM
 $('#regform').submit(function () {
@@ -197,6 +219,7 @@ $(document).ready(function () {
 		$("#tbl").toggle();
 	});
 });
+
 //SHOW ADDUPDATE FORM
 $(document).ready(function () {
 	$("#addupbtn").click(function () {
@@ -210,6 +233,19 @@ $(document).ready(function () {
 		return false;
 	});
 });
+/*$(document).ready(function () {
+	$("#addupbtn").click(function () {
+		$.get(
+			'addUser.php',
+			function (msg) {
+				console.log(msg);
+				$('#showaddup').html(msg);
+				//$('#showaddup').show('slow');
+			}
+		);
+		return false;
+	});
+});*/
 //
 //HIDE AND SHOW ADDFORM IN ACCOUNT
 /*$(document).ready(function () {
@@ -225,6 +261,7 @@ $(document).ready(function () {
 			function (msg) {
 				console.log(msg);
 				$('#showaddup').hide('slow');
+				//window.location.replace('account.php');
 			}
 		);
 		return false;

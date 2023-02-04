@@ -58,79 +58,79 @@ include('includeForAccount.php');
     <?php
     if (isset($_SESSION['user'])) {
     ?>
+        <div id="showresult">
+            <div>
+                <div id="showaddup"></div>
+                <br><br>
+                <!-- <a href="addUser.php">-->
+                <button id="addupbtn" type="button" name="addupbtn" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                    </span>
+                    Create Data
+                </button>
+                <!--</a>-->
+                &nbsp;&nbsp;&nbsp;&nbsp;
 
-        <div id="showaddup">
-        </div>
-        <br><br>
-        <!-- <a href="addUser.php">-->
-        <button id="addupbtn" type="button" name="addupbtn" class="btn btn-danger">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">
-            </span>
-            Create Data
-        </button>
-        <!--</a>-->
-        &nbsp;&nbsp;&nbsp;&nbsp;
-
-        <span id="hideAndShow" class="glyphicon glyphicon-th-list" aria-hidden="true">
-        </span>
-        Show Table
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="account.php"><span id="zoom" class="glyphicon glyphicon-zoom-in" aria-hidden="true">
-            </span>
-            Zoom in
-        </a>
-        <table id="tbl" class="table table-dark table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>№</th>
-                    <th>Login</th>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php if (!empty($users)) {
-                    $count = 0;
-                    foreach ($users as $row) {
-                        $count++;
-                ?>
+                <span id="hideAndShow" class="glyphicon glyphicon-th-list" aria-hidden="true">
+                </span>
+                Show Table
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="account.php"><span id="zoom" class="glyphicon glyphicon-zoom-in" aria-hidden="true">
+                    </span>
+                    Zoom in
+                </a>
+                <table id="tbl" class="table table-dark table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                            <td><?php echo $count; ?></td>
-                            <td><?php echo $row['login']; ?></td>
-                            <td><?php echo $row['email']; ?></td>
-                            <td><?php echo $row['name']; ?></td>
-                            <td>
-                                <a href="addUser.php?id=
-                                <?php echo $row['id']; ?>" class="glyphicon glyphicon-pencil">
-                                </a>
-                                &nbsp;&nbsp;
+                            <th>№</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                                <a href="delete.php?action_type=delete&id=
+                        <?php if (!empty($users)) {
+                            $count = 0;
+                            foreach ($users as $row) {
+                                $count++;
+                        ?>
+                                <tr>
+                                    <td><?php echo $count; ?></td>
+                                    <td><?php echo $row['login']; ?></td>
+                                    <td><?php echo $row['email']; ?></td>
+                                    <td><?php echo $row['name']; ?></td>
+                                    <td>
+                                        <a href="addUser.php?id=
+                                <?php echo $row['id']; ?>" class="glyphicon glyphicon-pencil">
+                                        </a>
+                                        &nbsp;&nbsp;
+
+                                        <a href="delete.php?action_type=delete&id=
                                 <?php echo $row['id']; ?>" class="glyphicon glyphicon-remove">
-                                </a>
-                                <!--     &nbsp;&nbsp;
+                                        </a>
+                                        <!--     &nbsp;&nbsp;
                             <a href="add.html" class="glyphicon glyphicon-plus">
                             </a>-->
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <tr>
-                        <td colspan="6">No member(s) found...</td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <tr>
+                                <td colspan="6">No member(s) found...</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
 
-    <?php
-    }
-    ?>
+            <?php
+        }
+            ?>
 
-    <script type="text/javascript" src="script.js"></script>
+            <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
