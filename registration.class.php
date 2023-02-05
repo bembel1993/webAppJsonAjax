@@ -64,49 +64,80 @@ class RegUser
     private function validationField()
     {
         if (empty($this->login)) {
-            echo '<p style="color: red">Field Login is empty</p>';
-            return $this->error = "Field Login is empty";
+          //  echo '<p style="color: red">Field Login is empty</p>';
+            $this->error = 'Field Login is empty';
+            echo json_encode($this->error);
         } elseif (empty($this->password)) {
-            echo '<p style="color: red">Field Password is empty</p>';
-            return $this->errorMessage = "Field Password is empty";
+           // echo '<p style="color: red">Field Password is empty</p>';
+           // return $this->errorMessage = "Field Password is empty";
+           $this->error = 'Field Password is empty';
+            echo json_encode($this->error);
         } elseif (empty($this->confirmPassword)) {
-            echo '<p style="color: red">Field Confirm Password is empty</p>';
-            return $this->errorMessage = "Field Confirm Password is empty";
+            $this->error = 'Field Confirm Password is empty';
+            echo json_encode($this->error);
+            //echo '<p style="color: red">Field Confirm Password is empty</p>';
+            //return $this->errorMessage = "Field Confirm Password is empty";
         } elseif (empty($this->email)) {
-            echo '<p style="color: red">Field Email is empty</p>';
-            return $this->errorMessage = "Field Email is empty";
+            $this->error = 'Field Email is empty';
+            echo json_encode($this->error);
+            // echo '<p style="color: red">Field Email is empty</p>';
+           // return $this->errorMessage = "Field Email is empty";
         } elseif (empty($this->name)) {
-            echo '<p style="color: red">Field Name is empty</p>';
-            return $this->errorMessage = "Field Name is empty";
+            $this->error = 'Field Name is empty';
+            echo json_encode($this->error);
+            // echo '<p style="color: red">Field Name is empty</p>';
+           // return $this->errorMessage = "Field Name is empty";
         } elseif ($this->password != $this->confirmPassword) {
-            echo '<p style="color: red">Confirmed password is not equal to your password</p>';
-            return $this->errorMessage = "Confirmed password is not equal to your password";
+            $this->error = 'Confirmed password is not equal to your password';
+            echo json_encode($this->error);
+            // echo '<p style="color: red">Confirmed password is not equal to your password</p>';
+           // return $this->errorMessage = "Confirmed password is not equal to your password";
         } elseif (strlen($this->password) < 6) {
-            echo '<p style="color: red">Password should be at least 6 characters long</p>';
-            return $this->errorMessage = "Password should be at least 6 characters long";
+            $this->error = 'Password should be at least 6 characters long';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Password should be at least 6 characters long</p>';
+  //          return $this->errorMessage = "Password should be at least 6 characters long";
         } elseif (!preg_match("#[0-9]+#", $this->password)) {
-            echo '<p style="color: red">Password should be have numbers</p>';
-            return $this->errorMessage = "Password should be have numbers";
+            $this->error = 'Password should be have numbers';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Password should be have numbers</p>';
+  //          return $this->errorMessage = "Password should be have numbers";
         } elseif (!preg_match("#[a-z]+#", $this->password)) {
-            echo '<p style="color: red">Password should be have letters</p>';
-            return $this->errorMessage = "Password should be have letters";
+            $this->error = 'Password should be have letters';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Password should be have letters</p>';
+  //          return $this->errorMessage = "Password should be have letters";
         } elseif (strlen($this->login) < 6) {
-            echo '<p style="color: red">Login should be at least 6 characters long</p>';
-            return $this->errorMessage = "Login should be at least 6 characters long";;
+            $this->error = 'Login should be at least 6 characters long';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Login should be at least 6 characters long</p>';
+  //          return $this->errorMessage = "Login should be at least 6 characters long";;
         } elseif (strlen($this->name) < 2) {
-            echo '<p style="color: red">Name should be at least 2 characters long and only contain letters</p>';
-            return $this->errorMessage = "Name should be at least 2 characters long and only contain letters";
+            $this->error = 'Name should be at least 2 characters long and only contain letters';
+            echo json_encode($this->error);
+            //        echo '<p style="color: red">Name should be at least 2 characters long and only contain letters</p>';
+      //      return $this->errorMessage = "Name should be at least 2 characters long and only contain letters";
         } elseif (!ctype_alpha($this->name)) {
-            echo '<p style="color: red">Name should be only containt letters</p>';
-            return $this->errorMessage = "Name should be only containt letters";;
+            $this->error = 'Name should be only containt letters';
+            echo json_encode($this->error);
+            //       echo '<p style="color: red">Name should be only containt letters</p>';
+      //      return $this->errorMessage = "Name should be only containt letters";;
         } elseif (preg_match('/\s/', $this->login)) {
-            echo '<p style="color: red">Login must not contain spaces</p>';
+            $this->error = 'Login must not contain spaces';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Login must not contain spaces</p>';
         } elseif (preg_match('/\s/', $this->password)) {
-            echo '<p style="color: red">Password must not contain spaces</p>';
+            $this->error = 'Password must not contain spaces';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Password must not contain spaces</p>';
         } elseif (preg_match('/[@_!#$%^&*()<>?\/\|\}{~:]/', $this->password)) {
-            echo '<p style="color: red">Password cannot contain special characters</p>';
+            $this->error = 'Password cannot contain special characters';
+            echo json_encode($this->error);
+//            echo '<p style="color: red">Password cannot contain special characters</p>';
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            echo '<p style="color: red">Not correct valid Email format</p>';
+            $this->error = 'Not correct valid Email format';
+            echo json_encode($this->error);
+            //          echo '<p style="color: red">Not correct valid Email format</p>';
         } else {
             $this->insertUser();
         }
@@ -116,11 +147,15 @@ class RegUser
     {
         foreach ($this->saveUserArray as $user) {
             if ($this->email === $user['email']) {
-                echo '<p style="color: red">Email is already taken</p>';
-                return $this->errorMessage = "Login or email is already taken.";
+                $this->error = 'Email is already taken';
+                echo json_encode($this->error);
+                // echo '<p style="color: red">Email is already taken</p>';
+               // return $this->errorMessage = "Login or email is already taken.";
             } elseif ($this->login === $user['login']) {
-                echo '<p style="color: red">Login is already taken</p>';
-                return $this->errorMessage = "Email is already taken.";
+                $this->error = 'Login is already taken';
+                echo json_encode($this->error);
+                //echo '<p style="color: red">Login is already taken</p>';
+                //return $this->errorMessage = "Email is already taken.";
             }
         }
         return false;
@@ -131,11 +166,15 @@ class RegUser
         if ($this->usernameExists() == false) {
             array_push($this->saveUserArray, $this->newUserArray);
             if (file_put_contents($this->containerDataRegUser, json_encode($this->saveUserArray))) {
-                echo '<p style="color: green">Successfully registered ' . $this->login . '</p>';
-                return $this->successMessage = "Successfully registered";
+                $this->error = 'Successfully registered '. $this->login;
+                echo json_encode($this->error);
+                // echo '<p style="color: green">Successfully registered ' . $this->login . '</p>';
+               // return $this->successMessage = "Successfully registered";
             } else {
-                echo '<p style="color: red">Error registered</p>';
-                return $this->errorMessage = "Error registering";
+                $this->error = 'Error registered '. $this->login;
+                echo json_encode($this->error);
+                //echo '<p style="color: red">Error registered</p>';
+                //return $this->errorMessage = "Error registering";
             }
         }
     }

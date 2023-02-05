@@ -26,7 +26,7 @@
         <h2>Create an account</h2>
         <form id="regform" action="" method="" enctype="multipart/form-data" autocomplete="off">
             <div id="my_messagereg"></div>
-            <div id="my_messagelog1"></div>
+           <!-- <div id="my_messagelog1" style="background-color: red;"></div>-->
             <p class="error"><?php echo @$user->errorMessage ?></p>
             <p class="success"><?php echo @$user->successMessage ?></p>
 
@@ -38,7 +38,7 @@
             <input type="password" id="password" name="f[password]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example4cg">Password</label>
 
-            <div id="my_messageconpass"></div>
+            <div id="my_messageconpass" style="background-color: red;"></div>
             <input type="password" id="confirm_password" name="f[confirm_password]" class="form-control form-control-lg" />
             <label class="form-label" for="form3Example4cdg">Confirm Password</label>
 

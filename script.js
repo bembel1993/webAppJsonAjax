@@ -148,9 +148,10 @@ $('#regform').submit(function () {
 		$("#regform").serialize(),
 
 		function (msg) {
-			if (msg == '<p style="color: red">Field Login is empty</p>') {
+			if (msg == 'Field Login is empty') {
 				console.log(msg);
 				$('#my_messagereg').html(msg);
+				
 			}
 			if (msg == '<p style="color: red">Field Password is empty</p>') {
 				console.log(msg);
@@ -158,7 +159,7 @@ $('#regform').submit(function () {
 			}
 			if (msg == '<p style="color: red">Field Confirm Password is empty</p>') {
 				console.log(msg);
-				$('#my_messagereg').html(msg);
+				$('#my_messageconpass').html(msg);
 			}
 			if (msg == '<p style="color: red">Field Email is empty</p>') {
 				console.log(msg);
@@ -206,7 +207,7 @@ $('#regform').submit(function () {
 			}
 			else {
 				console.log(msg);
-				$('#my_messagereg').html(msg);
+				$('#my_messagelog1').html(msg);
 			}
 		}
 	);
