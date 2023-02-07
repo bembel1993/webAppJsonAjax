@@ -7,7 +7,9 @@
 */
 //define('APP', true);
 ?>
-
+<?php
+include('includeForAccount.php');
+?>
 <html>
 
 <head>
@@ -27,47 +29,73 @@
 </head>
 
 <body>
+    <div class="hallo">
+    <header>
+        <div id="refrash">
+            <p>
+                <?php if (isset($_SESSION['user'])) { ?>
+                    <button id="logoutbtn" type="button" class="btn btn-info btn-lg" style="float: right">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        <!--<a href="?logout">Log out</a>-->
 
-    <div id="LogForm" class="wrapper">
-        <h2>Login</h2>
-        
-        <form id="sendform" action="" method="">
-            <div id="my_messagelog"></div>
-            <p class="error"><?php echo @$user->error ?></p>
-            <p class="error"><?php echo @$user->errorLogin ?></p>
-            <div class="form-outline mb-4">
-                <input id="login" type="text" name="f[login]" class="form-control form-control-lg" />
-                <label class="form-label" for="form3Example3cg">Login</label>
-            </div>
-            <p class="error"><?php echo @$user->errorPassword ?></p>
-            
-            <div class="form-outline mb-4">
-                <div id="my_messagepass"></div>
-                <input id="password" type="password" name="f[password]" class="form-control form-control-lg" />
-                <label class="form-label" for="form3Example4cg">Password</label>
-
-            </div>
-
-            <div class="input-box button">
-                <input type="submit" id="submit" name="submit" value="Login">
-            </div>
-
-            <p class="text-center text-muted mt-5 mb-0">Don't have an account?
-                <a href="" type="button" id="registrbtn" class="fw-bold text-body">
-                    <u>Registration here</u>
-                </a>
+                        <a href="">Log out</a>
+                    </button>
+                <?php } ?>
             </p>
-
-            <p class="success"><?php echo @$user->success ?></p>
-        </form>
-
+        </div>
+        <h2>Hello
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo $_SESSION['user'];
+            } ?><h2>
+    </header>
     </div>
-    <div id="registerFormShow">
-    </div>
-    </section>
+    <?php
+    if (!isset($_SESSION['user'])) {
+    ?>
+        <div id="LogForm" class="wrapper">
+            <h2>Login</h2>
 
-    <div id="body2">
-    </div>
+            <form id="sendform" action="" method="">
+                <div id="my_messagelog"></div>
+                <p class="error"><?php echo @$user->error ?></p>
+                <p class="error"><?php echo @$user->errorLogin ?></p>
+                <div class="form-outline mb-4">
+                    <input id="login" type="text" name="f[login]" class="form-control form-control-lg" />
+                    <label class="form-label" for="form3Example3cg">Login</label>
+                </div>
+                <p class="error"><?php echo @$user->errorPassword ?></p>
+
+                <div class="form-outline mb-4">
+                    <div id="my_messagepass"></div>
+                    <input id="password" type="password" name="f[password]" class="form-control form-control-lg" />
+                    <label class="form-label" for="form3Example4cg">Password</label>
+
+                </div>
+
+                <div class="input-box button">
+                    <input type="submit" id="submit" name="submit" value="Login">
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Don't have an account?
+                    <a href="" type="button" id="registrbtn" class="fw-bold text-body">
+                        <u>Registration here</u>
+                    </a>
+                </p>
+
+                <p class="success"><?php echo @$user->success ?></p>
+            </form>
+
+        </div>
+        <div id="registerFormShow">
+        </div>
+        </section>
+
+        <div id="body2">
+        </div>
+    <?php
+    }
+    ?>
     <script type="text/javascript" src="script.js"></script>
 </body>
 

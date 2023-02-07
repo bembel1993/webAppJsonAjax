@@ -1,5 +1,5 @@
 //SEND DATA LOGIN FORM
-$('#submit').click(function () {
+/*$('#submit').click(function () {
 	$.post(
 		'login.class.php',
 		$("#sendform").serialize(),
@@ -9,8 +9,8 @@ $('#submit').click(function () {
 		}
 	);
 	return false;
-});
-/*$('#submit').click(function () {
+});*/
+$('#submit').click(function () {
 	$.post(
 		'login.class.php',
 		$("#sendform").serialize(),
@@ -27,12 +27,14 @@ $('#submit').click(function () {
 
 			}
 			else {
-				$.get(
-					'account.php',
+				$.post(
+					'login.class.php',
+		$("#sendform").serialize(),
 					function (msg) {
-						console.log(msg);
-						$('#LogForm').hide('slow');
-						$('#body2').html(msg);
+						window.location.replace('account.php');
+						//	console.log(msg);
+					//	$('#LogForm').hide('slow');
+					//	$('#body2').html(msg);
 					}
 				);
 				return false;
@@ -41,7 +43,7 @@ $('#submit').click(function () {
 		}
 	);
 	return false;
-});*/
+});
 //UPDATE DATA
 //ADD and UPDATE NEW METHOD
 $('#addbtn').click(function () {

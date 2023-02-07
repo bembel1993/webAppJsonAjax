@@ -26,7 +26,7 @@ include('includeForAccount.php');
 </head>
 
 <body>
-    <header>
+    <div>
         <div id="refrash">
             <p>
                 <?php if (isset($_SESSION['user'])) { ?>
@@ -37,13 +37,6 @@ include('includeForAccount.php');
                         <a href="">Log out</a>
                     </button>
                 <?php } ?>
-
-                <?php if (!isset($_SESSION['user'])) { ?>
-                    <button id="indexbtn" class="btn btn-info btn-lg" style="float: right">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                        <a href="">Log In</a>
-                    </button>
-                <?php } ?>
             </p>
         </div>
         <h2>Hello
@@ -51,12 +44,12 @@ include('includeForAccount.php');
             if (isset($_SESSION['user'])) {
                 echo $_SESSION['user'];
             } ?><h2>
-    </header>
+    </div>
     <div class="pri">
     </div>
 
     <?php
-    if (isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user'])) {
     ?>
         <div id="showresult">
             <div>
